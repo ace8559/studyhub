@@ -1,3 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StudyHub | Learn Without Limits</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f1f5f9;color:#172554}
+header{background:#123b70;color:white;text-align:center;padding:25px}
+header h1{font-size:34px;margin:5px}
+nav{background:#092b50;padding:15px;text-align:center}
+nav a{color:white;text-decoration:none;margin:10px}
+main{max-width:950px;margin:auto;padding:18px}
+.hero{background:#dbeafe;padding:25px;border-radius:15px;text-align:center}
+.panel,.lesson{background:white;padding:18px;border-radius:12px;margin:15px 0;box-shadow:0 2px 7px #ddd}
+input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #bbb;border-radius:8px;font-size:16px}
+button{background:#1264b1;color:white;border:0;padding:12px 18px;border-radius:8px;margin:5px;cursor:pointer}
+.card{background:white;padding:18px;border-radius:12px;text-align:center;box-shadow:0 2px 7px #ddd}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px}
+h2{color:#123b70}
+.question{background:#eff6ff;padding:12px;border-radius:9px;margin:12px 0}
+footer{background:#092b50;color:white;text-align:center;padding:20px;margin-top:30px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 StudyHub</h1>
+<p>Learn Without Limits</p>
+<p>Kenyan Curriculum Learning Centre</p>
+</header>
+<nav>
+<a href="#home">Home</a>
+<a href="#learn">Learn</a>
+<a href="#subjects">Subjects</a>
+<a href="#about">About</a>
+</nav>
+<main>
+<section class="hero" id="home">
+<h2>Welcome to StudyHub!</h2>
+<p>Learn, practise and prepare for examinations.</p>
+<p>Education for everyone, everywhere.</p>
+</section>
+
+<section class="panel" id="learn">
+<h2>Find Your Lessons 🔍</h2>
+<input id="search" placeholder="Search a subject or topic..." oninput="showSearch()">
+<select id="curriculum" onchange="updateClasses()">
+<option value="">Choose curriculum</option>
+<option value="844">8-4-4</option>
+<option value="cbc">CBC</option>
+</select>
+<select id="className">
+<option value="">Choose class or grade</option>
+</select>
+<select id="subject" onchange="showSearch()">
+<option value="">Choose subject</option>
+<option>Mathematics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+<option>Physics</option>
+<option>English</option>
+<option>Kiswahili</option>
+<option>Geography</option>
+<option>History</option>
+<option>Business Studies</option>
+<option>Computer Studies</option>
+</select>
+<div id="results"></div>
+<div id="lesson"></div>
+</section>
+
+<section id="subjects">
+<h2>Explore Subjects</h2>
+<div class="grid">
+<div class="card">➗<h3>Mathematics</h3></div>
+<div class="card">🧪<h3>Chemistry</h3></div>
+<div class="card">🌱<h3>Biology</h3></div>
+<div class="card">⚛️<h3>Physics</h3></div>
+<div class="card">📖<h3>English</h3></div>
+<div class="card">🗣️<h3>Kiswahili</h3></div>
+<div class="card">🌍<h3>Geography</h3></div>
+<div class="card">🏛️<h3>History</h3></div>
+<div class="card">💻<h3>Computer Studies</h3></div>
+<div class="card">💰<h3>Business Studies</h3></div>
+</div>
+</section>
+
+<section class="panel" id="about">
+<h2>About StudyHub</h2>
+<p>StudyHub supports learners through notes, worked examples, practice questions and revision resources.</p>
+<p>Our goal is to make quality education accessible to everyone.</p>
+</section>
+</main>
+<footer>© 2026 StudyHub | Learn Without Limits</footer>
+
+<script>
+const lessons=[
+{
+subject:"Mathematics",
+topic:"Introduction to Algebra",
+classes:["Standard 7","Standard 8","Form 1","Form 2"],
+notes:"Algebra uses letters and symbols to represent numbers. These letters are called variables. Example: 2x + 3 is an algebraic expression. If x = 4, then 2x + 3 = 11.",
+example:"Solve: 2x + 5 = 13. Subtract 5 from both sides: 2x = 8. Divide by 2: x = 4.",
+question:"Solve: 3x + 2 = 14.",
+answer:"3x = 14 - 2 = 12. Therefore x = 4."
+},
+{
+subject:"Mathematics",
+topic:"Fractions",
+classes:["Standard 4","Standard 5","Standard 6","Standard 7","Form 1"],
+notes:"A fraction represents part of a whole. It has a numerator (top number) and a denominator (bottom number). Example: 1/2 means one part out of two equal parts.",
+example:"1/2 + 1/4 = 2/4 + 1/4 = 3/4.",
+question:"Calculate 1/3 + 1/6.",
+answer:"1/3 = 2/6. Therefore 2/6 + 1/6 = 3/6 = 1/2."
+},
+{
+subject:"Chemistry",
+topic:"Introduction to Chemistry",
+classes:["Form 1","Form 2","Grade 7","Grade 8","Grade 9"],
+notes:"Chemistry is the branch of science that studies matter, its composition, properties and changes. Matter is anything that has mass and occupies space.",
+example:"Water, oxygen and iron are examples of matter. Water can exist as a solid, liquid or gas.",
+question:"What is chemistry?",
+answer:"Chemistry is the study of matter, its composition, properties and changes."
+},
+{
+subject:"Chemistry",
+topic:"States of Matter",
+classes:["Form 1","Form 2","Grade 7","Grade 8","Grade 9"],
+notes:"The three common states of matter are solid, liquid and gas. Solids have a fixed shape and volume. Liquids have a fixed volume but take the shape of their container. Gases have neither a fixed shape nor a fixed volume.",
+example:"Ice is solid water. Melted ice is liquid water. Water vapour is gaseous water.",
+question:"Name the three common states of matter.",
+answer:"Solid, liquid and gas."
+},
+{
+subject:"Biology",
+topic:"Introduction to Biology",
+classes:["Form 1","Grade 7","Grade 8","Grade 9"],
+notes:"Biology is the scientific study of living organisms. It includes the study of plants, animals and microorganisms.",
+example:"A microscope helps scientists observe small organisms.",
+question:"What is biology?",
+answer:"Biology is the scientific study of living organisms."
+},
+{
+subject:"Physics",
+topic:"Introduction to Physics",
+classes:["Form 1","Grade 7","Grade 8","Grade 9"],
+notes:"Physics studies matter, energy and their interactions. It covers topics such as motion, forces, light, sound and electricity.",
+example:"A moving bicycle demonstrates motion and forces.",
+question:"What is physics?",
+answer:"Physics is the study of matter, energy and their interactions."
+},
+{
+subject:"English",
+topic:"Parts of Speech",
+classes:["Standard 5","Standard 6","Standard 7","Standard 8","Form 1"],
+notes:"Parts of speech are groups of words classified according to their functions. Examples include nouns, verbs, adjectives, adverbs and pronouns.",
+example:"In 'The clever boy runs quickly', boy is a noun, clever is an adjective and runs is a verb.",
+question:"Identify the verb in: Mary sings beautifully.",
+answer:"Sings."
+}
+];
+
+function updateClasses(){
+let system=document.getElementById("curriculum").value;
+let select=document.getElementById("className");
+select.innerHTML='<option value="">Choose class or grade</option>';
+let items=[];
+if(system==="844"){
+items=["Standard 1","Standard 2","Standard 3","Standard 4","Standard 5","Standard 6","Standard 7","Standard 8","Form 1","Form 2","Form 3","Form 4"];
+}
+if(system==="cbc"){
+items=["Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+}
+items.forEach(item=>{
+let option=document.createElement("option");
+option.value=item;
+option.textContent=item;
+select.appendChild(option);
+});
+showSearch();
+}
+
+function showSearch(){
+let term=document.getElementById("search").value.toLowerCase();
+let subject=document.getElementById("subject").value;
+let cls=document.getElementById("className").value;
+let matches=lessons.filter(l=>
+(!subject||l.subject===subject)&&
+(!term||l.topic.toLowerCase().includes(term)||l.subject.toLowerCase().includes(term))&&
+(!cls||l.classes.includes(cls))
+);
+let results=document.getElementById("results");
+let lesson=document.getElementById("lesson");
+lesson.innerHTML="";
+if(!matches.length){
+results.innerHTML="<p>No matching starter lesson found. More lessons will be added.</p>";
+return;
+}
+results.innerHTML="<h3>Available lessons</h3>"+matches.map((l,i)=>
+'<button onclick="openLesson('+lessons.indexOf(l)+')">'+l.subject+": "+l.topic+'</button>'
+).join("");
+}
+
+function openLesson(i){
+let l=lessons[i];
+document.getElementById("lesson").innerHTML=`
+<div class="lesson">
+<h2>${l.topic}</h2>
+<h3>${l.subject} – Lesson Notes</h3>
+<p>${l.notes}</p>
+<h3>Worked Example</h3>
+<p>${l.example}</p>
+<div class="question">
+<strong>Practice Question</strong>
+<p>${l.question}</p>
+<button onclick="document.getElementById('answer').classList.toggle('hidden')">Show Answer</button>
+<p id="answer" class="hidden">${l.answer}</p>
+</div>
+</div>`;
+}
+</script>
+</body>
+</html>
 HTML
 
 <!DOCTYPE html>
