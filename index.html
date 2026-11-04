@@ -1,3 +1,127 @@
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyHub - Learn Without Limits</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#172554}
+header{background:#123b70;color:white;padding:25px 15px;text-align:center}
+header h1{margin:0;font-size:32px}
+nav{background:#092b50;padding:13px;text-align:center}
+nav a{color:white;margin:10px;text-decoration:none}
+main{max-width:900px;margin:auto;padding:18px}
+.hero{background:#dbeafe;padding:25px;border-radius:14px;text-align:center}
+select,input{width:100%;padding:13px;margin:9px 0;border:1px solid #bbb;border-radius:8px;font-size:16px}
+h2{color:#123b70}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.card{background:white;padding:18px;border-radius:12px;box-shadow:0 2px 7px #ddd;text-align:center}
+.card h3{margin-top:5px}
+button{background:#1264b1;color:white;border:0;padding:12px 18px;border-radius:8px;font-size:16px;cursor:pointer}
+#result{background:white;padding:18px;margin-top:18px;border-radius:12px;line-height:1.7}
+footer{background:#092b50;color:white;text-align:center;padding:20px;margin-top:30px}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 StudyHub</h1>
+<p>Learn Without Limits</p>
+<p>Quality Education for Everyone</p>
+</header>
+<nav>
+<a href="#home">Home</a>
+<a href="#curriculum">Curriculum</a>
+<a href="#subjects">Subjects</a>
+<a href="#about">About</a>
+</nav>
+<main>
+<section class="hero" id="home">
+<h2>Welcome to StudyHub!</h2>
+<p>Your learning centre for the Kenyan 8-4-4 and CBC curricula.</p>
+<p>Study, practise and prepare for examinations.</p>
+</section>
+
+<section id="curriculum">
+<h2>Choose Your Curriculum</h2>
+<select id="system" onchange="updateLevels()">
+<option value="">Select curriculum</option>
+<option value="844">8-4-4 Curriculum</option>
+<option value="cbc">CBC Curriculum</option>
+</select>
+<select id="level">
+<option value="">Select class or grade</option>
+</select>
+<button onclick="showLessons()">Explore Learning</button>
+</section>
+
+<section id="subjects">
+<h2>Our Subjects</h2>
+<div class="grid">
+<div class="card">➗<h3>Mathematics</h3></div>
+<div class="card">🧪<h3>Chemistry</h3></div>
+<div class="card">⚛️<h3>Physics</h3></div>
+<div class="card">🌱<h3>Biology</h3></div>
+<div class="card">📖<h3>English</h3></div>
+<div class="card">🗣️<h3>Kiswahili</h3></div>
+<div class="card">🌍<h3>Geography</h3></div>
+<div class="card">🏛️<h3>History</h3></div>
+<div class="card">💻<h3>Computer Studies</h3></div>
+<div class="card">💰<h3>Business Studies</h3></div>
+<div class="card">✍️<h3>CRE</h3></div>
+<div class="card">🎨<h3>Creative Arts</h3></div>
+</div>
+</section>
+
+<div id="result">
+<h2>Start Learning</h2>
+<p>Choose your curriculum and class above to get started.</p>
+</div>
+
+<section id="about">
+<h2>About StudyHub</h2>
+<p>StudyHub is an educational platform designed to support learners studying the Kenyan 8-4-4 and Competency Based Education (CBC) curricula.</p>
+<p>Our goal is to make learning accessible, simple and enjoyable.</p>
+</section>
+</main>
+<footer>
+<p>© 2026 StudyHub | Learn Without Limits</p>
+</footer>
+
+<script>
+function updateLevels(){
+let system=document.getElementById("system").value;
+let level=document.getElementById("level");
+level.innerHTML='<option value="">Select class or grade</option>';
+let items=[];
+if(system==="844"){
+items=["Standard 1","Standard 2","Standard 3","Standard 4","Standard 5","Standard 6","Standard 7","Standard 8","Form 1","Form 2","Form 3","Form 4"];
+}
+if(system==="cbc"){
+items=["Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+}
+items.forEach(item=>{
+let option=document.createElement("option");
+option.value=item;
+option.textContent=item;
+level.appendChild(option);
+});
+}
+function showLessons(){
+let system=document.getElementById("system").value;
+let level=document.getElementById("level").value;
+let result=document.getElementById("result");
+if(!system||!level){
+result.innerHTML="<h2>Choose your class</h2><p>Please select a curriculum and class first.</p>";
+return;
+}
+result.innerHTML="<h2>Welcome to "+level+"!</h2><p>Your selected curriculum: "+(system==="844"?"8-4-4":"CBC")+"</p><h3>Available subjects</h3><p>Mathematics • English • Kiswahili • Science • Social Studies</p><p>Learning notes, topic lessons, diagrams and revision exercises will be added to each subject.</p>";
+}
+</script>
+</body>
+</html>
 <!doctype html>
 <html lang="en">
 <head>
