@@ -206,7 +206,7 @@ results.innerHTML="<h3>Available lessons</h3>"+matches.map((l,i)=>
 
 function openLesson(i){
 let l=lessons[i];
-document.getElementById("lesson").innerHTML=`
+document.getElementById("lesson").innerHTML=`<button onclick="document.getElementById('answer').classList.toggle('hidden')">Show Answer</button>
 <div class="lesson">
 <h2>${l.topic}</h2>
 <h3>${l.subject} – Lesson Notes</h3>
