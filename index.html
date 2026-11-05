@@ -27,6 +27,15 @@ footer{background:#092b50;color:white;text-align:center;padding:20px;margin-top:
 .hidden{display:none}
 </style>
 </head>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("StudyHub offline support ready"))
+      .catch(error => console.log("Service worker error:", error));
+  });
+}
+</script>
 <body>
 <header>
 <h1>📚 StudyHub</h1>
