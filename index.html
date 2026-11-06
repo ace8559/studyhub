@@ -1,443 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1565c0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ACE STUDIES | Learn Without Limits</title>
+<title>Ace StudyHub | Learn Without Limits</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f1f5f9;color:#172554}
-header{background:#123b70;color:white;text-align:center;padding:25px}
-header h1{font-size:34px;margin:5px}
-nav{background:#092b50;padding:15px;text-align:center}
-nav a{color:white;text-decoration:none;margin:10px}
-main{max-width:950px;margin:auto;padding:18px}
-.hero{background:#dbeafe;padding:25px;border-radius:15px;text-align:center}
-.panel,.lesson{background:white;padding:18px;border-radius:12px;margin:15px 0;box-shadow:0 2px 7px #ddd}
-input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #bbb;border-radius:8px;font-size:16px}
-button{background:#1264b1;color:white;border:0;padding:12px 18px;border-radius:8px;margin:5px;cursor:pointer}
-.card{background:white;padding:18px;border-radius:12px;text-align:center;box-shadow:0 2px 7px #ddd}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px}
-h2{color:#123b70}
-.question{background:#eff6ff;padding:12px;border-radius:9px;margin:12px 0}
-footer{background:#092b50;color:white;text-align:center;padding:20px;margin-top:30px}
-.hidden{display:none}
-body.dark{background:#0f172a;color:white}
-body.dark .panel, body.dark .lesson, body.dark .card{background:#1e293b;color:white}
-body.dark .hero{background:#1e293b;color:white}
-body.dark h2{color:#a5b4fc}
-body.dark p, body.dark li, body.dark span { color:white }
-body.dark .question { background:#334155; color:white }
-body.dark .hero p { color:white }
-body.dark .lesson, body.dark .lesson div { background:#1e293b !important; color:white !important }
-body.dark .lesson p, body.dark .lesson h3, body.dark .lesson h4 { color:white !important }
-body.dark .card { background:#1e293b !important; color:white !important }
-body.dark .card p, body.dark .card div { color:white !important }
-body.dark div { background:#1e293b !important; color:white !important; border-color:#334155 !important }
-body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark p, body.dark label { color:white !important }
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f1f5f9;color:#172554}header{background:#123b70;color:#fff;text-align:center;padding:25px}header h1{font-size:34px;margin:5px}nav{background:#092b50;padding:15px;text-align:center}nav a{color:#fff;text-decoration:none;margin:10px}main{max-width:950px;margin:auto;padding:18px}.hero{background:#dbeafe;padding:25px;border-radius:15px;text-align:center;color:#123b70}.panel,.lesson{background:#fff;padding:18px;border-radius:12px;margin:15px 0;box-shadow:0 2px 7px #ddd}input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #bbb;border-radius:8px;font-size:16px;background:#fff;color:#111}button{background:#1264b1;color:#fff;border:0;padding:12px 18px;border-radius:8px;margin:5px;cursor:pointer}.card{background:#fff;padding:18px;border-radius:12px;text-align:center;box-shadow:0 2px 7px #ddd;cursor:pointer;color:#123b70}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px}h2{color:#123b70}.question{background:#eff6ff;padding:12px;border-radius:9px;margin:12px 0;color:#111}footer{background:#092b50;color:#fff;text-align:center;padding:20px;margin-top:30px}body.dark{background:#0f172a;color:#fff}body.dark .panel,body.dark .lesson,body.dark .card{background:#1e293b;color:#fff}body.dark .hero{background:#1e293b;color:#fff}body.dark h2{color:#a5b4fc}body.dark input,body.dark select{background:#0f172a;color:#fff}body.dark .question{background:#334155;color:#fff}.tabBtn{background:#e2e8f0;color:#123b70}.tabBtn.active{background:#1264b1;color:#fff}.badge{background:#fff;color:#123b70;padding:6px 12px;border-radius:20px;display:inline-block;font-weight:bold;font-size:13px;margin-top:8px}.quiz{background:#fff7ed;border:2px solid #f59e0b;padding:14px;border-radius:12px;margin-top:15px}.quiz h3{color:#92400e}.kcseTag{background:#123b70;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px}.cbcTag{background:#15803d;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px}.bigCurr{padding:16px 20px;font-size:17px;font-weight:bold;width:48%}.bigCurr.cbc{background:#15803d}.bigCurr.kcse{background:#123b70}.currBox{border:3px solid #15803d;border-radius:12px;padding:14px;margin:12px 0;background:#f0fdf4}.currBox.kcseBox{border-color:#123b70;background:#eff6ff}.levelBox{background:#fff;border:2px solid #ddd;border-radius:12px;padding:12px;margin:8px 0}.levelBox b{color:#123b70}.diagram{background:#e0f2fe;border:2px dashed #1264b1;border-radius:12px;padding:14px;margin:12px 0;text-align:center}.diagram .big{font-size:48px}.worked{background:#f0fdf4;border:2px solid #15803d;border-radius:12px;padding:14px;margin:12px 0}.worked h3{color:#15803d}.noteBox{background:#fffbeb;border-left:5px solid #f59e0b;padding:12px;border-radius:8px;margin:10px 0}
 </style>
 </head>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("StudyHub offline support ready"))
-      .catch(error => console.log("Service worker error:", error));
-  });
-}
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("StudyHub offline support ready"))
-      .catch(error => console.log("Service worker error:", error));
-  });
-}
-</script>
 <body>
-<header>
-<h1>📚 StudyHub</h1>
-<p>Learn Without Limits</p>
-<p>Kenyan Curriculum Learning Centre</p>
-</header>
-<nav>
-<a href="#home">Home</a>
-<a href="#learn">Learn</a>
-<a href="#subjects">Subjects</a>
-<a href="#about">About</a>
-</nav>
+<header><h1>📚 Ace StudyHub</h1><p>Learn Without Limits</p><p>Kenya 2026 - CBE 2-6-3-3 + 8-4-4 SEPARATE</p><div class="badge">✅ Aligned to KICD Syllabus • Follows KNEC Exam Format</div><br><button onclick="toggleDark()" id="darkBtn" style="background:#fff;color:#123b70;font-weight:bold;margin-top:10px">🌙 Dark Mode</button></header>
+<nav><a href="#home">Home</a><a href="#learn">Learn</a><a href="#subjects">Subjects</a><a href="#papers">Papers</a></nav>
 <main>
-<section class="hero" id="home">
-<h2>Welcome to StudyHub!</h2>
-<p>Learn, practise and prepare for examinations.</p>
-<p>Education for everyone, everywhere.</p>
+<section class="hero" id="home"><h2>Welcome to Ace StudyHub!</h2><p>Every topic has: <b>Notes + Diagram + Worked Example + 10 Quiz Questions</b><br>Mathematics has <b>full step-by-step worked examples</b>. All content aligned to KICD syllabus and KNEC exam format.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="bigCurr cbc" onclick="chooseCurr('cbc')">🟢 CBC / CBE<br><small>PP1 - Grade 12</small></button><button class="bigCurr kcse" onclick="chooseCurr('844')">🔵 8-4-4<br><small>Std 1 - Form 4</small></button></div><p id="currLabel" style="font-weight:bold;color:#123b70;margin-top:10px">Showing: ALL - Tap CBC or 844 above</p>
+<div style="text-align:left;margin-top:12px"><div class="levelBox"><b>🟢 CBC / CBE 2-6-3-3:</b> Pre-Primary PP1-2 • Lower Primary 1-3 • Upper Primary 4-6 • Junior Secondary 7-9 • Senior 10-12 (STEM Pure/Applied/Technical, Social Sciences, Arts & Sports)<br><b>🔵 8-4-4:</b> Std 1-8 + Form 1-4 - Compulsory + Optional - Max 7 KCSE Subjects<br><b>Note:</b> Notes are Ace StudyHub revision notes aligned to KICD syllabus. They are not official KNEC/KICD publications. Papers are practice papers in KNEC exam format.</div></div>
 </section>
-
-<section class="panel" id="learn">
-<h2>Find Your Lessons 🔍</h2>
-<input id="search" placeholder="Search a subject or topic..." oninput="showSearch()">
-<select id="curriculum" onchange="updateClasses()">
-<option value="">Choose curriculum</option>
-<option value="844">8-4-4</option>
-<option value="cbc">CBC</option>
-</select>
-<select id="className">
-<option value="">Choose class or grade</option>
-</select>
-<select id="subject" onchange="showSearch()">
-<option value="">Choose subject</option>
-<option>Mathematics</option>
-<option>Chemistry</option>
-<option>Biology</option>
-<option>Physics</option>
-<option>English</option>
-<option>Kiswahili</option>
-<option>Geography</option>
-<option>History</option>
-<option>Business Studies</option>
-<option>Computer Studies</option>
-</select>
-<div id="results"></div>
-<div id="lesson"></div>
-</section>
-
-<section id="subjects">
-<h2>Explore Subjects</h2>
-<div class="grid">
-<div class="card">➗<h3>Mathematics</h3></div>
-<div class="card">🧪<h3>Chemistry</h3></div>
-<div class="card">🌱<h3>Biology</h3></div>
-<div class="card">⚛️<h3>Physics</h3></div>
-<div class="card">📖<h3>English</h3></div>
-<div class="card">🗣️<h3>Kiswahili</h3></div>
-<div class="card">🌍<h3>Geography</h3></div>
-<div class="card">🏛️<h3>History</h3></div>
-<div class="card">💻<h3>Computer Studies</h3></div>
-<div class="card">💰<h3>Business Studies</h3></div>
-</div>
-</section>
-
-<section class="panel" id="about">
-<h2>About StudyHub</h2>
-<p>StudyHub supports learners through notes, worked examples, practice questions and revision resources.</p>
-<p>Our goal is to make quality education accessible to everyone.</p>
-</section>
+<section class="panel" id="learn"><h2>Find Your Lessons 🔍</h2>
+<div><button class="tabBtn active" id="btnLessons" onclick="showTab('lessons')">📖 Lessons + Diagram + 10 Quiz</button><button class="tabBtn" id="btnPapers" onclick="showTab('papers')">📝 Papers & Quizzes</button></div>
+<label><b>1. Curriculum:</b></label>
+<select id="curriculum" onchange="updateClasses()"><option value="">ALL</option><option value="844">🔵 8-4-4 ONLY</option><option value="cbc">🟢 CBC / CBE ONLY</option></select>
+<label><b>2. Level:</b></label>
+<select id="level" onchange="updateClasses()"><option value="">All Levels</option><option value="pre">CBC Pre-Primary PP1-2</option><option value="lower">CBC Lower Primary Grade 1-3</option><option value="upper">CBC Upper Primary Grade 4-6</option><option value="junior">CBC Junior Secondary Grade 7-9</option><option value="junioropt">CBC Junior - Optional</option><option value="senior">CBC Senior Grade 10-12</option><option value="stem">Senior - STEM Pure</option><option value="stemapp">Senior - STEM Applied</option><option value="stemtech">Senior - STEM Technical</option><option value="social">Senior - Social Sciences</option><option value="arts">Senior - Arts & Sports</option><option value="844">844 - Std 1-8 + Form 1-4</option><option value="844comp">844 - Compulsory</option><option value="844opt">844 - Optional</option></select>
+<label><b>3. Class / Grade:</b></label>
+<select id="className" onchange="showSearch()"><option value="">Choose class or grade</option></select>
+<label><b>4. Subject:</b></label>
+<select id="subject" onchange="showSearch()"><option value="">Choose subject</option><option>Mathematics</option><option>Mathematical Activities</option><option>English</option><option>Kiswahili</option><option>Indigenous Language</option><option>Language Activities</option><option>Literacy</option><option>Environmental Activities</option><option>Science and Technology</option><option>Integrated Science</option><option>Social Studies</option><option>Geography</option><option>History and Government</option><option>History and Citizenship</option><option>CRE</option><option>IRE</option><option>HRE</option><option>Biology</option><option>Chemistry</option><option>Physics</option><option>Business Studies</option><option>Computer Science</option><option>Computer Studies</option><option>Agriculture</option><option>Agriculture and Nutrition</option><option>Home Science</option><option>Creative Arts</option><option>Visual Arts</option><option>Performing Arts</option><option>Art and Design</option><option>Music</option><option>Physical Education</option><option>Health Education</option><option>Pre-Technical Studies</option><option>Life Skills</option><option>Community Service Learning</option><option>Woodwork</option><option>Metalwork</option><option>Building Construction</option><option>Power Mechanics</option><option>Electricity</option><option>Drawing and Design</option><option>Aviation Technology</option><option>French</option><option>German</option><option>Arabic</option><option>Kenya Sign Language</option></select>
+<label><b>5. Strand:</b></label>
+<select id="substrand" onchange="showSearch()"><option value="">All Strands</option></select>
+<input id="search" placeholder="Search subject, strand, topic..." oninput="showSearch()">
+<div id="results"></div><div id="lesson"></div></section>
+<section id="subjects"><h2>Explore Subjects - Tap to Open</h2><div class="grid" id="subjectGrid"></div></section>
+<section class="panel" id="papers"><h2>📝 Papers & Quizzes - Separate</h2>
+<div class="currBox"><b>🟢 CBC / CBE - KICD Aligned Quizzes - 10 Qs Each</b><button onclick="filterPapers('CBC')" style="background:#15803d">Show CBC Quizzes Only</button></div>
+<div class="currBox kcseBox"><b>🔵 844 - KCSE Style Papers - 10 Qs Each</b><p>Practice papers in KNEC exam format. Not official KNEC papers.</p><button onclick="filterPapers('KCSE')">Show 844 KCSE Style Only</button></div>
+<div style="margin:10px 0"><button onclick="filterPapers('ALL')">Show All</button></div>
+<div id="paperList"></div><div id="paperView"></div></section>
 </main>
-<footer>© 2026 StudyHub | Learn Without Limits</footer>
-
+<footer>© 2026 Ace StudyHub | Learn Without Limits<br>Notes aligned to KICD Syllabus • Papers in KNEC Exam Format • Practice only, not official KNEC/KICD publications<br>VERSION 2026-11-05 - WITH DIAGRAMS + WORKED EXAMPLES</footer>
 <script>
+const subjectsList=["Mathematical Activities","English","Kiswahili","Indigenous Language","Environmental Activities","Science and Technology","Integrated Science","Social Studies","Agriculture and Nutrition","Creative Arts","Pre-Technical Studies","Business Studies","Life Skills","Computer Science","Health Education","Biology","Chemistry","Physics","Geography","History and Government","CRE","Music","Visual Arts","Performing Arts","Community Service Learning","Mathematics","French","Art and Design","Woodwork","Metalwork","Building Construction","Power Mechanics","Electricity","Drawing and Design","Aviation Technology"];
+const icons={"Mathematical Activities":"➗","Mathematics":"➗","English":"📖","Kiswahili":"🗣️","Indigenous Language":"🗣️","Environmental Activities":"🌍","Science and Technology":"🔬","Integrated Science":"🧬","Social Studies":"🌍","Agriculture and Nutrition":"🌾","Creative Arts":"🎨","Pre-Technical Studies":"🔧","Business Studies":"💰","Life Skills":"❤️","Computer Science":"💻","Health Education":"🏥","Biology":"🌱","Chemistry":"🧪","Physics":"⚛️","Geography":"🗺️","History and Government":"🏛️","CRE":"✝️","Music":"🎵","Visual Arts":"🎨","Performing Arts":"🎭","Community Service Learning":"🤝","French":"🇫🇷","Art and Design":"🎨","Woodwork":"🪵","Metalwork":"🔩","Building Construction":"🏗️","Power Mechanics":"⚙️","Electricity":"⚡","Drawing and Design":"📐","Aviation Technology":"✈️"};
+document.getElementById("subjectGrid").innerHTML=subjectsList.map(s=>`<div class="card" onclick="pickSubject('${s}')">${icons[s]||"📚"}<h3>${s}</h3><p>Tap for lessons</p></div>`).join("");
+const L=(subject,substrand,topic,classes,level,notes,example,worked,diagram,diagramText,question,answer,q2,q2a,q3,q3a)=>({subject,substrand,topic,classes,level,notes,example,worked,diagram,diagramText,question,answer,q2,q2a,q3,q3a});
 const lessons=[
-{
-subject:"Mathematics",
-topic:"Introduction to Algebra",
-classes:["Standard 7","Standard 8","Form 1","Form 2"],
-notes:"Algebra uses letters and symbols to represent numbers. These letters are called variables. Example: 2x + 3 is an algebraic expression. If x = 4, then 2x + 3 = 11.",
-example:"Solve: 2x + 5 = 13. Subtract 5 from both sides: 2x = 8. Divide by 2: x = 4.",
-question:"Solve: 3x + 2 = 14.",
-answer:"3x = 14 - 2 = 12. Therefore x = 4."
-},
-{
-subject:"Mathematics",
-topic:"Fractions",
-classes:["Standard 4","Standard 5","Standard 6","Standard 7","Form 1"],
-notes:"A fraction represents part of a whole. It has a numerator (top number) and a denominator (bottom number). Example: 1/2 means one part out of two equal parts.",
-example:"1/2 + 1/4 = 2/4 + 1/4 = 3/4.",
-question:"Calculate 1/3 + 1/6.",
-answer:"1/3 = 2/6. Therefore 2/6 + 1/6 = 3/6 = 1/2."
-},
-{
-subject:"Chemistry",
-topic:"Introduction to Chemistry",
-classes:["Form 1","Form 2","Grade 7","Grade 8","Grade 9"],
-notes:"Chemistry is the branch of science that studies matter, its composition, properties and changes. Matter is anything that has mass and occupies space.",
-example:"Water, oxygen and iron are examples of matter. Water can exist as a solid, liquid or gas.",
-question:"What is chemistry?",
-answer:"Chemistry is the study of matter, its composition, properties and changes."
-},
-{
-subject:"Chemistry",
-topic:"States of Matter",
-classes:["Form 1","Form 2","Grade 7","Grade 8","Grade 9"],
-notes:"The three common states of matter are solid, liquid and gas. Solids have a fixed shape and volume. Liquids have a fixed volume but take the shape of their container. Gases have neither a fixed shape nor a fixed volume.",
-example:"Ice is solid water. Melted ice is liquid water. Water vapour is gaseous water.",
-question:"Name the three common states of matter.",
-answer:"Solid, liquid and gas."
-},
-{
-subject:"Biology",
-topic:"Introduction to Biology",
-classes:["Form 1","Grade 7","Grade 8","Grade 9"],
-notes:"Biology is the scientific study of living organisms. It includes the study of plants, animals and microorganisms.",
-example:"A microscope helps scientists observe small organisms.",
-question:"What is biology?",
-answer:"Biology is the scientific study of living organisms."
-},
-{
-subject:"Physics",
-topic:"Introduction to Physics",
-classes:["Form 1","Grade 7","Grade 8","Grade 9"],
-notes:"Physics studies matter, energy and their interactions. It covers topics such as motion, forces, light, sound and electricity.",
-example:"A moving bicycle demonstrates motion and forces.",
-question:"What is physics?",
-answer:"Physics is the study of matter, energy and their interactions."
-},
-{
-subject:"English",
-topic:"Parts of Speech",
-classes:["Standard 5","Standard 6","Standard 7","Standard 8","Form 1"],
-notes:"Parts of speech are groups of words classified according to their functions. Examples include nouns, verbs, adjectives, adverbs and pronouns.",
-example:"In 'The clever boy runs quickly', boy is a noun, clever is an adjective and runs is a verb.",
-question:"Identify the verb in: Mary sings beautifully.",
-answer:"Sings."
-}
-];
-
-function updateClasses(){
-let system=document.getElementById("curriculum").value;
-let select=document.getElementById("className");
-select.innerHTML='<option value="">Choose class or grade</option>';
-let items=[];
-if(system==="844"){
-items=["Standard 1","Standard 2","Standard 3","Standard 4","Standard 5","Standard 6","Standard 7","Standard 8","Form 1","Form 2","Form 3","Form 4"];
-}
-if(system==="cbc"){
-items=["Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
-}
-items.forEach(item=>{
-let option=document.createElement("option");
-option.value=item;
-option.textContent=item;
-select.appendChild(option);
-});
-showSearch();
-}
-
-function showSearch(){
-let term=document.getElementById("search").value.toLowerCase();
-let subject=document.getElementById("subject").value;
-let cls=document.getElementById("className").value;
-let matches=lessons.filter(l=>
-(!subject||l.subject===subject)&&
-(!term||l.topic.toLowerCase().includes(term)||l.subject.toLowerCase().includes(term))&&
-(!cls||l.classes.includes(cls))
-);
-let results=document.getElementById("results");
-let lesson=document.getElementById("lesson");
-lesson.innerHTML="";
-if(!matches.length){
-results.innerHTML="<p>No matching starter lesson found. More lessons will be added.</p>";
-return;
-}
-results.innerHTML="<h3>Available lessons</h3>"+matches.map((l,i)=>
-'<button onclick="openLesson('+lessons.indexOf(l)+')">'+l.subject+": "+l.topic+'</button>'
-).join("");
-}
-
-function openLesson(i){
-let l=lessons[i];
-document.getElementById("lesson").innerHTML = `
-<div class="lesson">
-<h2>${l.topic}</h2>
-<h3>${l.subject} – Lesson Notes</h3>
-<p>${l.notes}</p>
-<h3>Worked Example</h3>
-<p>${l.example}</p>
-<div class="question">
-<strong>Practice Question</strong>
-<p>${l.question}</p>
-<button type="button" onclick="var a=this.nextElementSibling;a.hidden=!a.hidden;this.textContent=a.hidden?'Show Answer':'Hide Answer'">Show Answer</button>
-<p id="answer" hidden>${l.answer}</p>
-</div>
-</div>`;
-}
-</script>
-</body>
-</html>
-HTML
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StudyHub - Learn Without Limits</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#172554}
-header{background:#123b70;color:white;padding:25px 15px;text-align:center}
-header h1{margin:0;font-size:32px}
-nav{background:#092b50;padding:13px;text-align:center}
-nav a{color:white;margin:10px;text-decoration:none}
-main{max-width:900px;margin:auto;padding:18px}
-.hero{background:#dbeafe;padding:25px;border-radius:14px;text-align:center}
-select,input{width:100%;padding:13px;margin:9px 0;border:1px solid #bbb;border-radius:8px;font-size:16px}
-h2{color:#123b70}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-.card{background:white;padding:18px;border-radius:12px;box-shadow:0 2px 7px #ddd;text-align:center}
-.card h3{margin-top:5px}
-button{background:#1264b1;color:white;border:0;padding:12px 18px;border-radius:8px;font-size:16px;cursor:pointer}
-#result{background:white;padding:18px;margin-top:18px;border-radius:12px;line-height:1.7}
-footer{background:#092b50;color:white;text-align:center;padding:20px;margin-top:30px}
-</style>
-</head>
-<body>
-<header>
-<h1>📚 StudyHub</h1>
-<p>Learn Without Limits</p>
-<p>Quality Education for Everyone</p>
-</header>
-<nav>
-<a href="#home">Home</a>
-<a href="#curriculum">Curriculum</a>
-<a href="#subjects">Subjects</a>
-<a href="#about">About</a>
-</nav>
-<main>
-<section class="hero" id="home">
-<h2>Welcome to StudyHub!</h2>
-<p>Your learning centre for the Kenyan 8-4-4 and CBC curricula.</p>
-<p>Study, practise and prepare for examinations.</p>
-</section>
-
-<section id="curriculum">
-<h2>Choose Your Curriculum</h2>
-<select id="system" onchange="updateLevels()">
-<option value="">Select curriculum</option>
-<option value="844">8-4-4 Curriculum</option>
-<option value="cbc">CBC Curriculum</option>
-</select>
-<select id="level">
-<option value="">Select class or grade</option>
-</select>
-<button onclick="showLessons()">Explore Learning</button>
-</section>
-
-<section id="subjects">
-<h2>Our Subjects</h2>
-<div class="grid">
-<div class="card">➗<h3>Mathematics</h3></div>
-<div class="card">🧪<h3>Chemistry</h3></div>
-<div class="card">⚛️<h3>Physics</h3></div>
-<div class="card">🌱<h3>Biology</h3></div>
-<div class="card">📖<h3>English</h3></div>
-<div class="card">🗣️<h3>Kiswahili</h3></div>
-<div class="card">🌍<h3>Geography</h3></div>
-<div class="card">🏛️<h3>History</h3></div>
-<div class="card">💻<h3>Computer Studies</h3></div>
-<div class="card">💰<h3>Business Studies</h3></div>
-<div class="card">✍️<h3>CRE</h3></div>
-<div class="card">🎨<h3>Creative Arts</h3></div>
-</div>
-</section>
-
-<div id="result">
-<h2>Start Learning</h2>
-<p>Choose your curriculum and class above to get started.</p>
-</div>
-
-<section id="about">
-<h2>About StudyHub</h2>
-<p>StudyHub is an educational platform designed to support learners studying the Kenyan 8-4-4 and Competency Based Education (CBC) curricula.</p>
-<p>Our goal is to make learning accessible, simple and enjoyable.</p>
-</section>
-</main>
-<footer>
-<p>© 2026 StudyHub | Learn Without Limits</p>
-</footer>
-
-<script>
-function updateLevels(){
-let system=document.getElementById("system").value;
-let level=document.getElementById("level");
-level.innerHTML='<option value="">Select class or grade</option>';
-let items=[];
-if(system==="844"){
-items=["Standard 1","Standard 2","Standard 3","Standard 4","Standard 5","Standard 6","Standard 7","Standard 8","Form 1","Form 2","Form 3","Form 4"];
-}
-if(system==="cbc"){
-items=["Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
-}
-items.forEach(item=>{
-let option=document.createElement("option");
-option.value=item;
-option.textContent=item;
-level.appendChild(option);
-});
-}
-function showLessons(){
-let system=document.getElementById("system").value;
-let level=document.getElementById("level").value;
-let result=document.getElementById("result");
-if(!system||!level){
-result.innerHTML="<h2>Choose your class</h2><p>Please select a curriculum and class first.</p>";
-return;
-}
-result.innerHTML="<h2>Welcome to "+level+"!</h2><p>Your selected curriculum: "+(system==="844"?"8-4-4":"CBC")+"</p><h3>Available subjects</h3><p>Mathematics • English • Kiswahili • Science • Social Studies</p><p>Learning notes, topic lessons, diagrams and revision exercises will be added to each subject.</p>";
-}
-</script>
-</body>
-</html>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="StudyHub — free learning resources for Kenyan 8-4-4, CBC/CBE and university learners.">
-<title>StudyHub — Learn without limits</title>
-<style>
-:root {
-  --site-primary: #164e63;
-  --site-on-primary: #ffffff;
-  --site-secondary: #d9f1ec;
-  --site-on-secondary: #123b3a;
-  --site-background: #f3f8f7;
-  --site-on-background: #172b35;
-  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --site-heading-scale: 1;
-  --site-spacing-scale: 1;
-  --site-radius-scale: 1;
-  --site-decoration-opacity: 1;
-  color-scheme: light dark;
-}
-* { box-sizing: border-box; }
-body { margin: 0; font-family: var(--site-font-body); background: light-dark(#f3f8f7,#101b22); color: light-dark(#172b35,#e8f1f4); }
-#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); color: var(--site-on-background); }
-header { background: var(--site-primary); color: var(--site-on-primary); padding: calc(22px * var(--site-spacing-scale)) max(20px, calc((100vw - 1120px)/2)); position: relative; overflow: hidden; }
-header:after { content:""; position:absolute; width:300px; height:300px; border:1px solid currentColor; border-radius:50%; right:7%; top:-210px; opacity:calc(.14 * var(--site-decoration-opacity)); box-shadow:0 0 0 28px transparent,0 0 0 29px currentColor,0 0 0 60px transparent,0 0 0 61px currentColor; pointer-events:none; }
-.topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; max-width:1120px; margin:auto; position:relative; z-index:1; }
-.brand { display:flex; align-items:center; gap:10px; font-weight:850; letter-spacing:-.04em; font-size:22px; }
-.brand-mark { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:var(--site-secondary); color:var(--site-on-secondary); font-weight:900; }
-.top-tag { border:1px solid #ffffff66; padding:7px 11px; border-radius:99px; font-size:12px; }
-.hero { max-width:1120px; margin:54px auto 24px; position:relative; z-index:1; }
-.eyebrow { text-transform:uppercase; letter-spacing:.15em; font-size:11px; font-weight:800; opacity:.8; }
-h1 { font-family:var(--site-font-heading); font-size:calc(clamp(36px,6vw,64px) * var(--site-heading-scale)); line-height:1.02; letter-spacing:-.055em; max-width:720px; margin:13px 0; }
-.hero p { max-width:610px; line-height:1.65; color:#e0f0f2; font-size:16px; }
-.hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
-.btn { border:0; border-radius:calc(12px * var(--site-radius-scale)); padding:12px 17px; font-weight:750; cursor:pointer; font-size:14px; }
-.btn-primary { background:var(--site-secondary); color:var(--site-on-secondary); }
-.btn-ghost { background:transparent; border:1px solid #ffffff70; color:white; }
-main { max-width:1120px; margin:auto; padding:26px 20px 70px; }
-.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:-2px; }
-.stat { background:light-dark(#ffffff,#192831); border:1px solid light-dark(#dce8e7,#2b414b); border-radius:16px; padding:17px; }
-.stat strong { display:block; font-size:24px; letter-spacing:-.04em; }
-.stat span { color:light-dark(#5d737a,#a9bec5); font-size:12px; }
-.section-head { display:flex; justify-content:space-between; align-items:end; gap:16px; margin:38px 0 16px; }
-h2 { font-size:calc(25px * var(--site-heading-scale)); letter-spacing:-.04em; margin:0; }
-.section-head p { margin:5px 0 0; color:light-dark(#60747b,#a8bbc1); font-size:13px; }
-.controls { display:grid; grid-template-columns:1.1fr 1.5fr 1fr; gap:10px; margin:20px 0 18px; }
-input,select { width:100%; min-width:0; padding:13px 14px; border:1px solid light-dark(#cbdad9,#3a515b); border-radius:12px; background:light-dark(#fff,#182831); color:light-dark(#172b35,#edf5f7); font:inherit; outline:none; }
-input:focus,select:focus,button:focus-visible { outline:3px solid #49a9a0; outline-offset:2px; }
-.subject-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; }
-.subject { text-align:left; border:1px solid light-dark(#dce8e7,#2b414b); border-radius:16px; padding:17px; background:light-dark(#fff,#192831); color:inherit; cursor:pointer; transition:transform .15s,border-color .15s; min-height:142px; }
-.subject:hover,.subject.active { transform:translateY(-2px); border-color:#3b9a91; }
-.subject.active { box-shadow:0 0 0 2px #3b9a9130; }
-.subject-icon { width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:var(--site-secondary);color:var(--site-on-secondary);font-size:18px;margin-bottom:12px; }
-.subject h3 { margin:0 0 6px; font-size:15px; }
-.subject p { margin:0; color:light-dark(#60747b,#a8bbc1); font-size:12px; line-height:1.45; }
-.tag { display:inline-block; margin-top:10px; font-size:10px; font-weight:800; color:light-dark(#246c66,#8dd8cd); text-transform:uppercase; letter-spacing:.08em; }
-.lesson-panel { margin-top:24px; border-radius:20px; background:var(--site-secondary); color:var(--site-on-secondary); padding:
+L("Mathematical Activities","Numbers","Numbers 1-100",["PP1","PP2","Grade 1","Grade 2","Grade 3"],"pre","Numbers 1 to 100. Count objects, write numbers. Aligned to KICD syllabus.","Count 1,2,3...10.","Step 1: Start at 1. Step 2: Add 1 each time. Step 3: 1,2,3,4,5,6,7,8,9,10.","🔢","1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10<br>● ● ● ● ● = 5 objects","Count to 10?","1,2,3,4,5,6,7,8,9,10.","What comes after 9?","10.","How many fingers on 2 hands?","10."),
+L("Mathematical Activities","Measurement","Length - Long & Short",["Grade 1","Grade 2","Grade 3"],"lower","Long vs short. Use hand span, ruler.","Pencil longer than eraser.","Step 1: Put both side by side. Step 2: Compare ends. Step 3: Longer one sticks out more. Pencil wins.","📏","PENCIL ━━━━━━━━━━━━ (LONG)<br>ERASER ━━ (SHORT)","Which is longer?","Pencil.","Measure with?","Ruler / hand span.","Short object?","Eraser."),
+L("English","Grammar","Parts of Speech",["Grade 4","Grade 5","Grade 6"],"upper","Noun, verb, adjective, adverb, pronoun, preposition. KICD aligned.","The clever boy runs quickly.","Example: The clever (adjective) boy (noun) runs (verb) quickly (adverb).","📖","NOUN = boy, dog<br>VERB = runs, sings<br>ADJECTIVE = clever, tall<br>ADVERB = quickly","Verb: Mary sings.","Sings.","Adjective: Tall girl.","Tall.","Adverb: Runs quickly.","Quickly."),
+L("Mathematics","Numbers","Place Value & Whole Numbers",["Grade 4","Grade 5","Grade 6"],"upper","In 4,325: 4 thousands, 3 hundreds, 2 tens, 5 ones.","Value of 7 in 7,482 = 7,000.","WORKED: 347 + 258<br>Step 1: 7+8=15 write 5 carry 1<br>Step 2: 4+5+1=10 write 0 carry 1<br>Step 3: 3+2+1=6<br>Answer = 605","🔢","4,325 = [4][3][2][5]<br>Thousands | Hundreds | Tens | Ones<br>4000 + 300 + 20 + 5","Value of 5 in 5,214?","5,000.","Value of 9 in 9,312?","9,000.","Write 4,325 in words?","Four thousand three hundred twenty-five."),
+L("Mathematics","Numbers","Addition & Subtraction",["Grade 4","Grade 5","Grade 6"],"upper","Add by grouping tens/ones. Subtract by borrowing.","456+234=690.","WORKED: 347 + 258<br>Units: 7+8=15 → 5 carry 1<br>Tens: 4+5+1=10 → 0 carry 1<br>Hundreds: 3+2+1=6 → 605","➕","  347<br>+ 258<br>-----<br>  605<br>Carry: 1 1","347+258=?","605.","500-275=?","225.","Shop 800 sold 350 left?","450."),
+L("Mathematics","Numbers","Multiplication & Division",["Grade 4","Grade 5","Grade 6"],"upper","Multiplication is repeated addition. Division is sharing equally.","12 x 8 = 96.","WORKED: 12 x 8<br>Step 1: 10 x 8 = 80<br>Step 2: 2 x 8 = 16<br>Step 3: 80+16=96<br>WORKED: 96 ÷ 8 = 12 because 8 x 12 = 96","✖️","12 x 8 = (10+2) x 8<br>= 80 + 16 = 96<br>96 ÷ 8 = 12","144 ÷ 12=?","12.","15 x 6=?","90.","Share 120 among 10?","12."),
+L("Mathematics","Numbers","Fractions",["Grade 4","Grade 5","Grade 6","Grade 7"],"upper","Numerator top, denominator bottom. Make same denominator to add.","1/2+1/4=3/4.","WORKED: 1/2 + 1/4<br>Step 1: LCM of 2,4 = 4<br>Step 2: 1/2 = 2/4<br>Step 3: 2/4 + 1/4 = 3/4","🍕","🍕🍕 = 1 whole<br>1/2 = ████░░░░<br>1/4 = ██░░░░░░<br>1/2+1/4=3/4","1/3+1/6=?","1/2.","3/4-1/4=?","1/2.","Bigger 2/3 or 1/2?","2/3."),
+L("Mathematics","Numbers","Percentages",["Grade 6","Grade 7","Grade 8"],"upper","Percent means out of 100. 50% = 50/100 = 1/2.","50% of 200 = 100.","WORKED: 25% of 80<br>Step 1: 25% = 25/100 = 1/4<br>Step 2: 80 ÷ 4 = 20<br>Answer = 20","💯","100% = ██████████<br>50% = █████░░░░░<br>25% = ██░░░░░░░░<br>25% of 80 = 20","25% of 80?","20.","10% of 500?","50.","Shirt 1000 discount 20%?","800."),
+L("Mathematics","Algebra","Introduction to Algebra",["Grade 7","Grade 8","Form 1"],"junior","Letters stand for numbers. 2x+3 means 2 times x plus 3.","2x+5=13, x=4.","WORKED: Solve 3x+2=14<br>Step 1: 3x = 14-2 = 12<br>Step 2: x = 12 ÷ 3 = 4<br>Check: 3(4)+2=14 ✓","🔤","2x + 3<br>x = ?<br>⚖️ Balance: Do same both sides<br>3x+2=14 → 3x=12 → x=4","Solve 3x+2=14.","x=4.","If x=5, 2x+1?","11.","Solve x+9=20.","x=11."),
+L("Mathematics","Geometry","Angles & Shapes",["Grade 4","Grade 5","Grade 6"],"upper","Right 90°, Acute <90°, Obtuse 90-180°, Straight 180°.","Angles on line=180°.","WORKED: If one angle 70° on straight line<br>Step 1: Straight = 180°<br>Step 2: Other = 180-70 = 110°","📐","Right: ⌐ 90°<br>Acute: < 90°<br>Obtuse: > 90°<br>Straight: — 180°","If one is 70°, other on line?","110°.","Right angle?","90°.","Name angle 120°.","Obtuse."),
+L("Mathematics","Geometry","Circles",["Grade 7","Grade 8","Form 2"],"junior","Circumference=2πr, Area=πr². Diameter=2r.","r=7, Area=154.","WORKED: r=7, π=22/7<br>Area = πr² = 22/7 x 7 x 7 = 154<br>Circumference = 2πr = 2 x 22/7 x 7 = 44","⭕","○ Circle<br>r = radius (centre to edge)<br>d = 2r (diameter)<br>C = 2πr, A = πr²","Circumference r=7?","44.","Diameter if r=5?","10.","Area if r=7?","154."),
+L("Mathematics","Algebra","Quadratic Equations",["Form 3","Form 4"],"844","ax²+bx+c=0. Factorise or use formula.","x²+5x+6=0 => x=-2 or -3.","WORKED: Factorise x²+3x+2<br>Step 1: Find 2 numbers multiply 2, add 3 → 1 and 2<br>Step 2: (x+1)(x+2)=0<br>Step 3: x=-1 or x=-2","📈","y = x² (Parabola U shape)<br>x²+3x+2 = (x+1)(x+2)<br>Roots: x=-1, -2","Factorise x²+3x+2.","(x+1)(x+2).","Solve x²-9=0.","x=3 or -3.","Factorise x²+4x+4.","(x+2)²."),
+L("Mathematics","Calculus","Calculus - Differentiation",["Form 4"],"844","Differentiation: rate of change. Integration: reverse.","d/dx x²=2x.","WORKED: d/dx x²<br>Step 1: Bring power down: 2 x<br>Step 2: Reduce power by 1: x¹ = x<br>Answer: 2x","📈","y = x² → slope = 2x<br>At x=2, slope = 4<br>∫2x dx = x² + C","Derivative of x²?","2x.","Integral of 2x?","x² + C.","tan 45°?","1."),
+L("Science and Technology","Living Things","Plants & Animals",["Grade 4","Grade 5","Grade 6"],"upper","Living: grow, breathe, feed, move, reproduce. KICD aligned.","Dog living, stone non-living.","Example: Dog grows, breathes, eats, moves.","🌱🐶","LIVING: 🌱 Dog, Tree, Human<br>GROW • BREATHE • FEED • MOVE<br>NON-LIVING: 🪨 Stone, Chair","2 characteristics?","Grow and breathe.","Tree is?","Living.","Non-living?","Stone."),
+L("Biology","Cells","Introduction to Biology & Cells",["Form 1","Form 2"],"844","Biology = study of living things. Cell = smallest unit. KICD aligned.","Microscope sees cells.","Example: Microscope magnifies cell 400x.","🔬","CELL DIAGRAM:<br>[ Nucleus • ]<br>[ Cytoplasm ]<br>[ Cell Membrane ]<br>Plant also: Cell Wall + Chloroplast","What is biology?","Study of living organisms.","Smallest unit?","Cell.","Tool?","Microscope."),
+L("Biology","Human Body","Digestive System",["Form 1","Form 2"],"844","Mouth -> Oesophagus -> Stomach -> Small intestine -> Large intestine.","Small intestine absorbs.","Example: Food journey 24hrs.","👄","MOUTH 👄 → OESOPHAGUS ↓<br>→ STOMACH → SMALL INTESTINE (absorbs) → LARGE INTESTINE","Where absorbed?","Small intestine.","First part?","Mouth.","Last part?","Large intestine."),
+L("Biology","Plants","Photosynthesis",["Form 1","Form 2"],"844","Plants make food using sunlight, water, CO2. Produces oxygen.","Green leaves.","Example: Leaf + sunlight = food + oxygen.","🌿☀️","☀️ Sunlight<br>↓<br>🍃 Leaf + 💧 Water + CO₂<br>↓<br>🍬 Glucose + O₂ Oxygen","Equation?","CO2+Water -> Glucose+Oxygen.","Needs sunlight?","Yes.","Produces?","Oxygen + Glucose."),
+L("Chemistry","Matter","States of Matter",["Form 1"],"844","Solid fixed shape, Liquid fixed volume, Gas no fixed.","Ice, Water, Steam.","Example: Heat ice → water → steam.","🧊💧💨","🧊 SOLID: Fixed shape<br>💧 LIQUID: Takes shape of container<br>💨 GAS: Fills all space<br>Heat → → →","3 states?","Solid, liquid, gas.","Ice is?","Solid.","Steam is?","Gas."),
+L("Chemistry","Acids","Acids, Bases & Indicators",["Form 1","Form 2"],"844","Acids sour, pH <7. Bases bitter, pH >7. Litmus tests.","Lemon acid, soap base.","Example: Lemon pH 2, Water pH 7, Soap pH 10.","🍋","pH SCALE:<br>0-6 ACID 🍋 Lemon<br>7 NEUTRAL 💧 Water<br>8-14 BASE 🧼 Soap","pH neutral?","7.","pH acid?","Less than 7.","pH base?","More than 7."),
+L("Physics","Mechanics","Motion",["Form 1"],"844","Speed = Distance/Time.","100m in 20s =5m/s.","WORKED: Speed 60m in 10s<br>Step 1: Speed = Distance ÷ Time<br>Step 2: 60 ÷ 10 = 6<br>Answer: 6 m/s","🏃","Distance ➡️ 60m<br>Time ⏱️ 10s<br>Speed = Distance ÷ Time<br>= 60 ÷ 10 = 6 m/s","Speed 60m in 10s?","6 m/s.","Speed 100m in 25s?","4 m/s.","Distance = Speed x ?","Time."),
+L("Physics","Electricity","Electricity & Magnetism",["Form 2","Form 3"],"844","Current = Charge/Time. V=IR. Magnet attracts iron.","Bulb lights.","Example: Circuit: Battery → Wire → Bulb.","🔋💡","🔋 Battery + — Wire — 💡 Bulb<br>Current flows → Light ON<br>Magnet 🧲 attracts Iron","V=IR means?","Voltage=Current x Resistance.","Unit current?","Ampere.","Magnet attracts?","Iron."),
+L("Social Studies","Citizenship","Our County & Country",["Grade 4","Grade 5","Grade 6"],"upper","Kenya has 47 counties. Capital Nairobi.","Nairobi county + capital.","Example: Nairobi is county 047.","🇰🇪","🇰🇪 KENYA MAP<br>47 Counties<br>★ Nairobi = Capital<br>Mt Kenya = Highest","How many counties?","47.","Capital?","Nairobi.","Continent?","Africa."),
+L("Geography","Physical Geography","Weather & Climate",["Form 1","Form 2"],"844","Weath
