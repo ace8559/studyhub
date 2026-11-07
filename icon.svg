@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="90" fill="#1565c0"/>
-<path d="M256 85 C190 50 115 70 95 95 V265 C155 240 210 250 256 290 C302 250 357 240 417 265 V95 C357 70 302 50 256 85Z" fill="white"/>
-<path d="M256 85 V290" stroke="#1565c0" stroke-width="12"/>
-<text x="256" y="365" text-anchor="middle" font-family="Arial" font-size="57" font-weight="bold" fill="white">ACE</text>
-<text x="256" y="425" text-anchor="middle" font-family="Arial" font-size="48" font-weight="bold" fill="white">STUDIES</text>
-</svg>
