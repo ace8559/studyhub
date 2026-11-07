@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101b30">
+<title>ACE STUDY HUB - Mathematics</title>
+<style>
+:root{--navy:#101b30;--gold:#e4b94f;--bg:#f3f5f8}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#172033}
+header{background:var(--navy);color:white;padding:20px 14px;border-bottom:4px solid var(--gold)}
+.brand{text-align:center;color:var(--gold);font-size:25px;font-weight:bold}
+.tag{text-align:center;color:white;font-size:11px;letter-spacing:3px;margin-top:6px}
+nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:17px}
+button{cursor:pointer;font-size:14px}
+nav button{background:transparent;border:1px solid #65738b;color:white;padding:10px 13px;border-radius:6px}
+nav button:hover{background:var(--gold);color:var(--navy)}
+.hero{background:var(--navy);color:white;text-align:center;padding:38px 15px}
+.hero h1{margin:0;color:var(--gold);font-size:32px}
+.hero p{line-height:1.7;color:#d5deec}
+.container{max-width:1050px;width:94%;margin:25px auto}
+.panel{background:white;border-radius:10px;padding:20px;margin-bottom:20px;border:1px solid #e1e5ec}
+h2,h3{color:var(--navy)}
+.forms{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.form-btn{padding:16px 5px;background:var(--navy);color:white;border:0;border-radius:7px;font-weight:bold}
+.form-btn.active,.form-btn:hover{background:var(--gold);color:var(--navy)}
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.topic{background:white;border:1px solid #dfe4eb;border-radius:8px;padding:15px;text-align:left;color:var(--navy)}
+.topic:hover{border:2px solid var(--gold);background:#fffaf0}
+.topic small{display:block;color:#69758a;margin-top:7px}
+.lesson{background:white;border-radius:10px;padding:22px;line-height:1.8;border:1px solid #e0e5ed}
+.lesson h2{border-bottom:2px solid var(--gold);padding-bottom:10px}
+.example,.exam{background:#f5f6f8;padding:16px;border-left:4px solid var(--gold);margin:18px 0;border-radius:5px}
+.answer{display:none;background:#eaf5ed;padding:14px;border-radius:6px;margin-top:10px;color:#185b38}
+.answer.show{display:block}
+.action{background:var(--navy);color:white;border:0;border-radius:6px;padding:11px 16px}
+.action:hover{background:#29446b}
+.gold{background:var(--gold);color:var(--navy);font-weight:bold;border:0;padding:12px 18px;border-radius:6px}
+.back{margin-bottom:15px}
+.notice{background:#fff8e7;padding:13px;border-left:4px solid var(--gold);line-height:1.6}
+.hidden{display:none!important}
+footer{background:var(--navy);color:white;text-align:center;padding:27px;border-top:4px solid var(--gold);margin-top:40px}
+footer strong{color:var(--gold)}
+@media(max-width:500px){.forms{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:27px}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="brand">ACE STUDY HUB</div>
+<div class="tag">LEARN WITHOUT LIMITS</div>
+<nav>
+<button onclick="home()">Home</button>
+<button onclick="showForms()">Mathematics</button>
+<button onclick="showRevision()">Revision</button>
+</nav>
+</header>
+
+<section class="hero">
+<h1>MATHEMATICS</h1>
+<p>8-4-4 SECONDARY EDUCATION<br>
+Form One • Form Two • Form Three • Form Four</p>
+<button class="gold" onclick="showForms()">START LEARNING</button>
+</section>
+
+<main class="container">
+
+<section id="home" class="panel">
+<h2>Welcome to Mathematics</h2>
+<p>Study Mathematics topic by topic. Every lesson is organised to help you understand concepts, apply methods and prepare for examinations.</p>
+<div class="notice">Learning resources are original study materials aligned to the Kenyan 8-4-4 Mathematics syllabus. They are not copied from commercial textbooks.</div>
+</section>
+
+<section id="formSection" class="panel">
+<h2>Choose Your Class</h2>
+<div class="forms" id="forms"></div>
+</section>
+
+<section id="topicsSection" class="panel hidden">
+<h2 id="formTitle">Form 1 Mathematics</h2>
+<p>Select a topic to open its learning materials.</p>
+<div class="topic-grid" id="topics"></div>
+</section>
+
+<section id="lessonSection" class="hidden">
+<button class="action back" onclick="backToTopics()">← Back to Topics</button>
+<article class="lesson" id="lessonContent"></article>
+</section>
+
+<section id="revisionSection" class="panel hidden">
+<h2>Mathematics Revision Centre</h2>
+<p>Practise original examination-style Mathematics questions.</p>
+<div class="notice">These are original practice questions, not reproduced KNEC past examination papers.</div>
+<div id="revisionQuestions"></div>
+</section>
+
+</main>
+
+<footer>
+<strong>ACE STUDY HUB</strong>
+<p>LEARN WITHOUT LIMITS</p>
+<p>Mathematics • Knowledge • Excellence</p>
+<small>© <span id="year"></span> ACE STUDY HUB</small>
+</footer>
+
+<script>
+const syllabus = {
+"Form 1":[
+"Natural Numbers","Factors","Divisibility Tests",
+"Greatest Common Divisor (HCF)","Least Common Multiple (LCM)",
+"Integers","Fractions","Decimals","Squares and Square Roots",
+"Algebraic Expressions","Rates, Ratio, Percentages and Proportion",
+"Length","Area","Volume and Capacity","Mass, Density and Weight",
+"Time","Linear Equations","Commercial Arithmetic",
+"Coordinates and Graphs","Angles and Plane Figures",
+"Geometrical Constructions","Scale Drawing","Common Solids"
+],
+"Form 2":[
+"Cubes and Cube Roots","Reciprocals","Indices and Logarithms",
+"Equations of Straight Lines","Reflection and Congruence",
+"Rotation","Similarity and Enlargement","Pythagoras Theorem",
+"Trigonometry","Area of a Triangle",
+"Area of Quadrilaterals and Polygons","Area of Parts of a Circle",
+"Surface Area of Solids","Volume of Solids",
+"Quadratic Expressions and Equations","Linear Inequalities",
+"Linear Motion","Statistics","Angle Properties of a Circle","Vectors"
+],
+"Form 3":[
+"Quadratic Expressions","Approximation and Errors",
+"Trigonometry II","Surds","Further Logarithms",
+"Commercial Arithmetic II","Circle Chords and Tangents",
+"Matrices","Formulae and Variations","Sequences and Series",
+"Vectors II","Binomial Expansions","Probability",
+"Compound Proportions and Rates of Work","Graphical Methods"
+],
+"Form 4":[
+"Matrices and Transformations","Statistics II","Loci",
+"Trigonometry III","Three-Dimensional Geometry",
+"Longitudes and Latitudes","Linear Programming",
+"Differentiation","Area Approximation","Integration"
+]
+};
+
+let currentForm="Form 1";
+let currentTopic="";
+
+const detailedLessons = {
+
+/* FORM 1 */
+
+"Natural Numbers":{
+meaning:"Natural numbers are counting numbers used to count objects and quantities. In this syllabus, learners also study place value, number notation and rounding off.",
+notes:[
+"Place value tells us the value represented by a digit according to its position.",
+"Even numbers are divisible by 2 without a remainder.",
+"Odd numbers leave a remainder of 1 when divided by 2.",
+"Prime numbers have exactly two distinct positive factors: 1 and themselves.",
+"Composite numbers have more than two positive factors.",
+"Rounding off depends on the digit immediately to the right of the required place."
+],
+example:"Write 4,583,726 to the nearest thousand. The hundreds digit is 7. Since 7 is at least 5, increase the thousands digit by one. Answer: 4,584,000.",
+question:"Round 786,452 to the nearest thousand.",
+answer:"The hundreds digit is 4, so the thousands digit remains unchanged. Answer: 786,000."
+},
+
+"Factors":{
+meaning:"A factor of a number divides that number exactly without leaving a remainder.",
+notes:[
+"Factors are exact divisors of a number.",
+"Prime factorisation expresses a composite number as a product of prime numbers.",
+"Repeated prime factors can be written using powers.",
+"Every whole number greater than 1 is either prime or composite."
+],
+example:"Find the prime factors of 60. 60 = 2 × 30 = 2 × 2 × 15 = 2² × 3 × 5.",
+question:"Express 84 as a product of prime factors.",
+answer:"84 = 2 × 2 × 3 × 7 = 2² × 3 × 7."
+},
+
+"Divisibility Tests":{
+meaning:"Divisibility tests help determine whether one number divides another exactly without carrying out long division.",
+notes:[
+"A number is divisible by 2 if its last digit is even.",
+"A number is divisible by 3 if the sum of its digits is divisible by 3.",
+"A number is divisible by 5 if it ends in 0 or 5.",
+"A number is divisible by 9 if its digit sum is divisible by 9.",
+"A number is divisible by 10 if its last digit is 0.",
+"A number is divisible by 4 if its last two digits form a number divisible by 4."
+],
+example:"Test whether 738 is divisible by 3. Add the digits: 7 + 3 + 8 = 18. Since 18 is divisible by 3, 738 is divisible by 3.",
+question:"Is 4,725 divisible by 9?",
+answer:"4 + 7 + 2 + 5 = 18. Since 18 is divisible by 9, the number is divisible by 9."
+},
+
+"Greatest Common Divisor (HCF)":{
+meaning:"The highest common factor is the greatest positive integer that divides two or more numbers exactly.",
+notes:[
+"List the factors of each number.",
+"Identify factors common to all the numbers.",
+"Choose the greatest common factor.",
+"Prime factorisation can also be used to find HCF."
+],
+example:"Find HCF of 18 and 24. Factors of 18: 1, 2, 3, 6, 9, 18. Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24. HCF = 6.",
+question:"Find the HCF of 20 and 30.",
+answer:"Common factors are 1, 2, 5 and 10. The HCF is 10."
+},
+
+"Least Common Multiple (LCM)":{
+meaning:"The lowest common multiple is the smallest positive number that is a multiple of each of the given numbers.",
+notes:[
+"List the multiples of each number.",
+"Identify the common multiples.",
+"Select the smallest positive common multiple.",
+"LCM is useful in problems involving repeating events."
+],
+example:"Find LCM of 4 and 6. Multiples of 4: 4, 8, 12, 16. Multiples of 6: 6, 12, 18. LCM = 12.",
+question:"Find the LCM of 8 and 12.",
+answer:"Multiples of 8 include 8, 16, 24. Multiples of 12 include 12, 24. LCM = 24."
+},
+
+"Integers":{
+meaning:"Integers are positive whole numbers, negative whole numbers and zero.",
+notes:[
+"Positive integers are greater than zero.",
+"Negative integers are less than zero.",
+"Zero is neither positive nor negative.",
+"Adding numbers with the same sign involves adding their absolute values and retaining the sign.",
+"When signs differ, subtract the smaller absolute value from the larger.",
+"Multiplication or division of two numbers with the same sign gives a positive result; different signs give a negative result."
+],
+example:"Evaluate (-8) + 13. Subtract 8 from 13. Since 13 has the greater absolute value, the result is positive. Answer = 5.",
+question:"Evaluate (-12) + 7.",
+answer:"12 - 7 = 5. The greater absolute value is negative. Answer = -5."
+},
+
+"Fractions":{
+meaning:"A fraction represents part of a whole. Its numerator is above the fraction line and its denominator is below it.",
+notes:[
+"A proper fraction has a numerator smaller than its denominator.",
+"An improper fraction has a numerator equal to or greater than its denominator.",
+"A mixed number contains a whole number and a fraction.",
+"Equivalent fractions have the same value.",
+"To add or subtract fractions, use a common denominator.",
+"To multiply fractions, multiply the numerators and denominators.",
+"To divide fractions, multiply by the reciprocal of the divisor."
+],
+example:"Calculate 1/2 + 1/4. The common denominator is 4. Therefore 2/4 + 1/4 = 3/4.",
+question:"Calculate 2/3 + 1/6.",
+answer:"2/3 = 4/6. Therefore 4/6 + 1/6 = 5/6."
+},
+
+"Decimals":{
+meaning:"Decimals represent fractions using place values based on powers of ten.",
+notes:[
+"The first digit after the decimal point represents tenths.",
+"The second digit represents hundredths.",
+"The third digit represents thousandths.",
+"Recurring decimals have a digit or group of digits that repeats indefinitely.",
+"Standard form expresses a number as A × 10ⁿ, where 1 ≤ A < 10."
+],
+example:"Express 0.75 as a fraction. 0.75 = 75/100 = 3/4.",
+question:"Express 0.36 as a fraction in its simplest form.",
+answer:"36/100. Divide by 4 to obtain 9/25."
+},
+
+"Squares and Square Roots":{
+meaning:"The square of a number is obtained by multiplying the number by itself. A square root reverses this operation.",
+notes:[
+"5² = 5 × 5 = 25.",
+"√25 = 5.",
+"Perfect squares have whole-number square roots.",
+"Prime factorisation can help determine square roots."
+],
+example:"Find √144. Since 12 × 12 = 144, √144 = 12.",
+question:"Find the square root of 196.",
+answer:"14 × 14 = 196. Therefore √196 = 14."
+},
+
+"Algebraic Expressions":{
+meaning:"An algebraic expression is a mathematical phrase involving numbers, variables and operations.",
+notes:[
+"A variable is a letter representing an unknown or changing number.",
+"Terms are separated by addition or subtraction signs.",
+"Like terms contain the same variables raised to the same powers.",
+"Substitution involves replacing a variable with a given value.",
+"Factorisation expresses an expression as a product of factors."
+],
+example:"Simplify 3x + 5x - 2x. Collect like terms: (3 + 5 - 2)x = 6x.",
+question:"Simplify 7a + 3a - 4a.",
+answer:"(7 + 3 - 4)a = 6a."
+},
+
+"Rates, Ratio, Percentages and Proportion":{
+meaning:"Ratio compares quantities, rate compares quantities with different units, and percentage expresses a quantity out of 100.",
+notes:[
+"A ratio a:b compares two quantities.",
+"Ratios should be simplified by dividing by their common factor.",
+"Percentage means per hundred.",
+"To convert a fraction to a percentage, multiply by 100%.",
+"Direct proportion means two quantities increase or decrease together in a constant ratio."
+],
+example:"Find 20% of KSh 500. 20/100 × 500 = KSh 100.",
+question:"Calculate 15% of KSh 800.",
+answer:"15/100 × 800 = KSh 120."
+},
+
+"Linear Equations":{
+meaning:"A linear equation is an equation in which the highest power of the unknown variable is one.",
+notes:[
+"An equation contains an equality sign.",
+"Perform the same operation on both sides to preserve equality.",
+"Collect variable terms on one side and constants on the other.",
+"Check a solution by substituting it into the original equation."
+],
+example:"Solve 2x + 3 = 11. Subtract 3: 2x = 8. Divide by 2: x = 4.",
+question:"Solve 3x - 5 = 16.",
+answer:"3x = 21. Therefore x = 7."
+},
+
+"Commercial Arithmetic":{
+meaning:"Commercial arithmetic applies mathematical operations to everyday financial situations.",
+notes:[
+"Profit = Selling Price - Cost Price.",
+"Loss = Cost Price - Selling Price.",
+"Simple interest = (Principal × Rate × Time)/100.",
+"Discount is a reduction from the marked price.",
+"Commission is an amount paid for services based on an agreed arrangement."
+],
+example:"An item costs KSh 400 and is sold for KSh 500. Profit = 500 - 400 = KSh 100.",
+question:"An item costs KSh 600 and is sold for KSh 750. Find the profit.",
+answer:"750 - 600 = KSh 150."
+},
+
+"Coordinates and Graphs":{
+meaning:"Coordinates identify positions on a Cartesian plane using ordered pairs (x,y).",
+notes:[
+"The horizontal axis is the x-axis.",
+"The vertical axis is the y-axis.",
+"The point where the axes meet is the origin (0,0).",
+"An ordered pair is written as (x,y).",
+"A graph represents the relationship between variables."
+],
+example:"For the point (3,2), move 3 units along the positive x-axis and 2 units upwards.",
+question:"What are the coordinates of the origin?",
+answer:"(0,0)."
+}
+};
+
+/* ADDITIONAL FORM 1 TOPIC NOTES */
+const shortNotes = {
+"Length":"Length measures distance between two points. Common units include millimetres, centimetres, metres and kilometres. Convert between units carefully using powers of ten.",
+"Area":"Area measures the surface covered by a plane shape. Rectangle: length × width. Triangle: 1/2 × base × perpendicular height. Square: side × side.",
+"Volume and Capacity":"Volume measures the space occupied by a solid. Capacity measures how much a container can hold. One litre equals 1,000 cubic centimetres.",
+"Mass, Density and Weight":"Mass measures the amount of matter. Density = mass/volume. Weight is the gravitational force acting on a body.",
+"Time":"Time is measured in seconds, minutes and hours. One minute is 60 seconds and one hour is 60 minutes.",
+"Angles and Plane Figures":"An angle is formed by two rays meeting at a vertex. Angles on a straight line sum to 180 degrees. Angles around a point sum to 360 degrees.",
+"Geometrical Constructions":"Geometrical constructions use mathematical instruments such as a ruler, compass and protractor to construct accurate figures.",
+"Scale Drawing":"A scale drawing represents actual lengths in a fixed ratio. Scale = drawing length : actual length, using consistent units.",
+"Common Solids":"Common solids include cubes, cuboids, cylinders, cones, spheres and pyramids. They have different faces, edges and vertices."
+};
+
+/* FORM 2–4 TOPIC EXPLANATIONS */
+const generalNotes = {
+"Form 2":{
+"Cubes and Cube Roots":"A cube is a number multiplied by itself three times. The cube root reverses cubing. For example, 3³ = 27 and ∛27 = 3.",
+"Reciprocals":"The reciprocal of a non-zero number is one divided by that number. The reciprocal of 5 is 1/5.",
+"Indices and Logarithms":"An index indicates repeated multiplication. For example, 2³ = 2 × 2 × 2. Logarithms are the inverse operation of exponentiation.",
+"Equations of Straight Lines":"A straight-line equation can be written as y = mx + c, where m is the gradient and c is the y-intercept.",
+"Reflection and Congruence":"Reflection produces a mirror image across a line. Congruent figures have equal corresponding sides and angles.",
+"Rotation":"Rotation turns a figure around a fixed centre through a specified angle and direction.",
+"Similarity and Enlargement":"Similar figures have equal corresponding angles and proportional corresponding sides. Enlargement changes size using a scale factor.",
+"Pythagoras Theorem":"For a right-angled triangle, a² + b² = c², where c is the hypotenuse.",
+"Trigonometry":"In a right-angled triangle, sin θ = opposite/hypotenuse, cos θ = adjacent/hypotenuse and tan θ = opposite/adjacent.",
+"Area of a Triangle":"Area = 1/2 × base × perpendicular height.",
+"Area of Quadrilaterals and Polygons":"Areas are calculated using suitable formulas for rectangles, parallelograms, trapezia and other polygons.",
+"Area of Parts of a Circle":"Area of a sector = θ/360 × πr². Area of a circle = πr².",
+"Surface Area of Solids":"Surface area is the total area of all external faces or curved surfaces of a solid.",
+"Volume of Solids":"Volume measures the space occupied by a solid. A cuboid has volume length × width × height.",
+"Quadratic Expressions and Equations":"A quadratic equation has the form ax² + bx + c = 0, where a is not zero.",
+"Linear Inequalities":"An inequality compares quantities using symbols such as <, >, ≤ and ≥.",
+"Linear Motion":"Speed = distance/time. Average speed is total distance divided by total time.",
+"Statistics":"Statistics involves collecting, organising, presenting and interpreting numerical data.",
+"Angle Properties of a Circle":"Angles subtended by the same chord at the circumference are equal. The angle in a semicircle is 90 degrees.",
+"Vectors":"A vector has both magnitude and direction. Vectors can be added, subtracted and multiplied by scalars."
+},
+"Form 3":{
+"Quadratic Expressions":"Quadratic expressions contain a squared variable. Factorisation and completing the square are important techniques.",
+"Approximation and Errors":"Approximation gives a convenient value close to the exact value. Absolute error is the difference between the exact and approximate values.",
+"Trigonometry II":"Further trigonometry applies trigonometric ratios and identities to more complex angles and problems.",
+"Surds":"A surd is an irrational root that cannot be simplified to a rational number. For example, √2.",
+"Further Logarithms":"Logarithm laws simplify multiplication, division and powers. log(ab) = log(a) + log(b).",
+"Commercial Arithmetic II":"Advanced commercial arithmetic includes financial calculations such as compound interest and depreciation.",
+"Circle Chords and Tangents":"A chord joins two points on a circle. A tangent touches a circl
